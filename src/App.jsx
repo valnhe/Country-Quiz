@@ -7,27 +7,36 @@ import NumberCircle from './components/NumberCircle'
 import AnswerCard from './components/AnswerCard';
 import './App.css'
 
-const data = await getWorldRank();
-
-const getRandomElements = (array, count) => {
-  const shuffledArray = array.sort(() => 0.5 - Math.random());
-  return shuffledArray.slice(0, count);
-};
 
 function App() {
 
-  const [points, setPoints] = useState(0);
-  const [question, setQuestion] = useState(doQuestion(getRandomElements(data, 40)));
+  const getRandomElements = (array, count) => {
+    const shuffledArray = [...array].sort(() => 0.5 - Math.random());
+    return shuffledArray.slice(0, count);
+  };
 
+  const [points, setPoints] = useState(0);
+  const [countries, setCountries] = useState([]);
+  const [question, setQuestion] = useState({});
   const [actualNumber, setActualNumber] = useState(1);
   const [toAnswer, setToAnswer] = useState(false);
 
   useEffect(() => {
-    if (actualNumber === 12) {
+    const fetchDataAndInitialize = async () => {
+      const data = await getWorldRank();
+      setCountries(data);
       setQuestion(doQuestion(getRandomElements(data, 40)));
+    };
+
+    fetchDataAndInitialize();
+  }, []);
+
+  useEffect(() => {
+    if (actualNumber === 12) {
+      setQuestion(doQuestion(getRandomElements(countries, 40)));
       setActualNumber(1);
     }
-  }, [actualNumber]);
+  }, [actualNumber, countries]);
   
 
   return (
@@ -44,9 +53,9 @@ function App() {
                 ))}
             </nav>
             <article>
-              <h2>{question[actualNumber-1].question}</h2>
+              <h2>{question[actualNumber-1]?.question? question[actualNumber-1].question : ""}</h2>
               <section className='buttons-question'>
-                {question[actualNumber-1].answers?.map(( answer , index) => (
+                {question[actualNumber-1]?.answers?.map(( answer , index) => (
                   <AnswerCard key={index} answer={answer.answer} isCorrect={question[actualNumber-1].correct === answer.answer} toAnswer={toAnswer} setToAnswer={setToAnswer} setActualNumber={setActualNumber} setPoints={setPoints}/>
                 ))}
               </section>
