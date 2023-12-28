@@ -1,0 +1,37 @@
+.congratscard {
+    max-width: 400px;
+    background-color: #343964;
+    padding: 20px;
+    border-radius: 10px;
+    font-family: 'Be Vietnam Pro', sans-serif;
+}
+
+.congrats-article {
+    padding: 0 10px;
+}
+
+.congrats-h1 {
+    color: #E2E4F3;
+    font-size: 24px;
+    font-weight: 500;
+}
+
+.congrats-p {
+    color: #E2E4F3;
+    font-size: 14px;
+    font-weight: 400;
+}
+
+.congrats-button {
+    width: 65%;
+    margin: 50px 0px;
+    font-family: 'Be Vietnam Pro', sans-serif;
+    font-size: 16px;
+    font-weight: 500;
+    color: #E2E4F3;
+    border-radius: 10px;
+    border: none;
+    background: linear-gradient(to right,#E65895, #BC6BE8);
+    padding: 15px 20px;
+    cursor: pointer;
+}

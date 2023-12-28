@@ -1,0 +1,19 @@
+.base-button { 
+    padding: 15px 20px;
+    cursor: pointer;
+    font-family: 'Be Vietnam Pro', sans-serif;
+    font-size: 16px;
+    font-weight: 500;
+    color: #E2E4F3;
+    border-radius: 10px;
+    border: none;
+    background-color: #393F6E;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+.base-button:hover , .active-button{
+    background: linear-gradient(to right,#E65895, #BC6BE8);
+}

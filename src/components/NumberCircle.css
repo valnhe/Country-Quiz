@@ -1,0 +1,18 @@
+.list {
+    font-size: 16px;
+    font-weight: 600;
+    background-color: #393F6E;
+    width: 40px;
+    height: 40px;
+    color: #E2E4F3;
+    border-radius: 100%;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.active {
+    background: linear-gradient(to right,#E65895, #BC6BE8);
+}
