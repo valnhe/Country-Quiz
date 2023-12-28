@@ -35,6 +35,7 @@ function App() {
     if (actualNumber === 12) {
       setQuestion(doQuestion(getRandomElements(countries, 40)));
       setActualNumber(1);
+      setPoints(0);
     }
   }, [actualNumber, countries]);
   
@@ -46,20 +47,22 @@ function App() {
 
       {actualNumber < 11 &&
         <main className='main-game'>
-          <h1>Country Quiz</h1>
-            <nav>
-              {[...Array(10)].map((_, index) => (
-                  <NumberCircle key={index} numberlist={index+1} actualNumber={actualNumber}/>
-                ))}
-            </nav>
-            <article>
-              <h2>{question[actualNumber-1]?.question? question[actualNumber-1].question : ""}</h2>
-              <section className='buttons-question'>
-                {question[actualNumber-1]?.answers?.map(( answer , index) => (
-                  <AnswerCard key={index} answer={answer.answer} isCorrect={question[actualNumber-1].correct === answer.answer} toAnswer={toAnswer} setToAnswer={setToAnswer} setActualNumber={setActualNumber} setPoints={setPoints}/>
-                ))}
-              </section>
-            </article>
+          <div className="conteiner">
+            <h1>Country Quiz</h1>
+              <nav>
+                {[...Array(10)].map((_, index) => (
+                    <NumberCircle key={index} numberlist={index+1} actualNumber={actualNumber}/>
+                  ))}
+              </nav>
+              <article>
+                <h2>{question[actualNumber-1]?.question? question[actualNumber-1].question : ""}</h2>
+                <section className='buttons-question'>
+                  {question[actualNumber-1]?.answers?.map(( answer , index) => (
+                    <AnswerCard key={index} answer={answer.answer} isCorrect={question[actualNumber-1].correct === answer.answer} toAnswer={toAnswer} setToAnswer={setToAnswer} setActualNumber={setActualNumber} setPoints={setPoints}/>
+                  ))}
+                </section>
+              </article>
+          </div>
           </main>
         }
     

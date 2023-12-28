@@ -79,7 +79,7 @@ export function doQuestion (countries) {
     sixthQuestion.answers.sort(() => Math.random() - 0.5);
 
     const seventhQuestion = {
-      question: `Which country is ${(countries[24]?.capital?.[0] ? countries[4]?.capital?.[0] : "Fail data")} the capital?`,
+      question: `Which country is ${(countries[24]?.capital?.[0] ? countries[24]?.capital?.[0] : "Fail data")} the capital?`,
       answers: [
         { question: countries[24]?.capital?.[0] ? countries[24].capital[0] : "Fail data", answer: countries[24]?.name?.common || "Fail data" },
         { question: countries[25]?.capital?.[0] ? countries[25].capital[0] : "Fail data", answer: countries[25]?.name?.common || "Fail data" },
@@ -132,7 +132,7 @@ export function doQuestion (countries) {
     tenthQuestion.answers.sort(() => Math.random() - 0.5);
 
     const allQuestion = [firstQuestion, secondQuestion, thirdQuestion, fourthQuestion, fifthQuestion, sixthQuestion, seventhQuestion, eighthQuestion, ninthQuestion, tenthQuestion];
-    allQuestion.sort(() => Math.random() - 0.5);
+    //allQuestion.sort(() => Math.random() - 0.5);
 
     return allQuestion;
 }

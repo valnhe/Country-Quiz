@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState , useEffect} from 'react';
 import PropTypes from 'prop-types';
 
 import Correct from '../images/Check_round_fill.svg';
@@ -10,8 +10,19 @@ function AnswerCard ({ answer , isCorrect , toAnswer , setToAnswer , setActualNu
     const [answerEmoji, setAnswerEmoji] = useState('');
     const [clikedAnswer, setClikedAnswer] = useState(false);
 
-    const handleClick = () => {
-
+    useEffect(() => {
+        if (toAnswer && isCorrect) {
+          setAnswerEmoji('correct');
+    
+          const timeoutId = setTimeout(() => {
+            setAnswerEmoji('');
+          }, 2000);
+    
+          return () => clearTimeout(timeoutId);
+        } 
+      }, [toAnswer, isCorrect, setPoints]);
+    
+      const handleClick = () => {
         if(!toAnswer) {
             if (isCorrect) {
                 setAnswerEmoji('correct');
@@ -19,19 +30,17 @@ function AnswerCard ({ answer , isCorrect , toAnswer , setToAnswer , setActualNu
             } else {
                 setAnswerEmoji('incorrect');
             }
-
             setToAnswer(true);
             setClikedAnswer(true);
         }
 
         setTimeout(() => {
-            setToAnswer(false);
-            setAnswerEmoji('');
-            setClikedAnswer(false);
-            setActualNumber(prev => prev + 1);
+          setToAnswer(false);
+          setClikedAnswer(false);
+          setAnswerEmoji('');
+          setActualNumber((prev) => prev + 1);
         }, 2000);
-        
-    };
+      };
 
   return (
     <button onClick={handleClick} className={clikedAnswer ? 'base-button active' : 'base-button'}>{answer} {answerEmoji === 'correct' ? <CorrectAnswer/> : answerEmoji === 'incorrect' ? <IncorrectAnswer/> : ''}</button>
